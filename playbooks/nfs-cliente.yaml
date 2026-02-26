@@ -3,6 +3,7 @@
   become: true
 
   tasks:
+
   - name: Install required packages for automount
     ansible.builtin.apt:
       name: "{{ item }}"
@@ -19,6 +20,7 @@
       dest: /etc/auto.master.d/nfs.autofs
       owner: root
       mode: '0644'
+    notify: Restart autofs
 
   - name: Add nfs mount map file
     ansible.builtin.copy:
@@ -34,8 +36,8 @@
       state: started
       enabled: true
 
- handlers:
-  - name: restart autofs
+  handlers:
+  - name: Restart autofs
     ansible.builtin.systemd_service:
       name: autofs
       state: restarted 
