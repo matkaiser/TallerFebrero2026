@@ -1,0 +1,12 @@
+[Unit]
+After=network.target autofs.service
+
+[Service]
+Type=simple
+WorkingDirectory= /mnt/shared
+ExecStart=/usr/bin/python3 -m http.server 8080 --directory /mnt/shared
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
