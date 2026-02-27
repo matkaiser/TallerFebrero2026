@@ -1,0 +1,49 @@
+---
+- hosts: ubuntu
+  become: true
+
+  tasks:
+
+    - name: Actualizar el caché de apt y realizar upgrade de paquetes
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Establecer política por defecto - Denegar entrante
+      community.general.ufw:
+        direction: incoming
+        default: deny
+
+    - name: Establecer política por defecto - Permitir saliente
+      community.general.ufw:
+        direction: outgoing
+        default: allow
+
+    - name: Permitir tráfico SSH
+      community.general.ufw:
+        rule: allow
+        name: OpenSSH
+
+    - name: Habilitar el firewall (UFW)
+      community.general.ufw:
+        state: enabled
+
+    - name: Opcional - Limitar intentos de conexión SSH (Fuerza bruta)
+      community.general.ufw:
+        rule: limit
+        port: ssh
+        proto: tcp
+      
+
+    - name: Opcional - Permitir SSH solo desde una red específica
+      community.general.ufw:
+        rule: allow
+        proto: tcp
+        from_ip: 192.168.10.0/24
+        port: '22'
+
+    - name: Asegurar que el servicio ufw esté activo y habilitado en el sistema
+      ansible.builtin.systemd:
+        name: ufw
+        state: started
+        enabled: yes
