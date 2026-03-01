@@ -1,4 +1,5 @@
 TallerFebrero2026
+
 Guía simple para usar los playbooks
 
 ============================================================
@@ -40,9 +41,21 @@ ansible --version
 
 ============================================================
 
+Instalar requirements necesarios
+
+ansible-galaxy collections install -r collecctions/requirements.yaml
+
+Esto instala las dependencias que el proyecto necesita para funcionar.
+
+
+============================================================
+
 Cómo está organizado el proyecto
 
 El proyecto tiene algunas carpetas importantes:
+
+collections/
+Contiene la lista de dpendencias necesesarias para que funcione el proyecto.
 
 inventories/
 Contiene la lista de servidores donde se aplicarán los cambios.
@@ -60,18 +73,20 @@ Archivos que se generan dinámicamente antes de enviarse.
 
 El inventario
 
-El inventario es simplemente una lista de las máquinas que van a recibir los cambios.
-
-Ejemplo:
+En el la carpeta "inventories" está el archivo "hosts.ini" en el cual puedes ver la configuracion que deben de tener las maquinas a configurar:
 
 [ubuntu]
-192.168.1.10
-192.168.1.11
+Hostname: ubuntu01 
+IP: 192.168.1.21
+Hostname: ubuntu02 
+IP: 192.168.1.22
 
 [centos]
-192.168.1.20
+Hostname: centos01 
+IP: 192.168.1.11
+Hostname: centos02 
+IP: 192.168.1.12
 
-Esto permite agrupar servidores y aplicar tareas solo a ciertos grupos si es necesario.
 
 ============================================================
 
@@ -87,17 +102,12 @@ Si todo está bien configurado, debería responder correctamente.
 
 Ejecutar un playbook
 
-Un playbook es el archivo que contiene las instrucciones.
-
-Para ejecutarlo:
-
-ansible-playbook -i inventories/hosts.ini playbooks/nombre.yml
-
-Ejemplo:
+Para ejecutar el proyecto se utiliza:
 
 ansible-playbook -i inventories/hosts.ini playbooks/site.yml
 
-Ansible se conectará a los servidores y aplicará las tareas definidas.
+Este playbook contiene todos los playbooks del proyecto concatenados.
+De esta forma ansible se conectará a los servidores y aplicará las tareas definidas.
 
 ============================================================
 
