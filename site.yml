@@ -1,0 +1,6 @@
+---
+- import_playbook: playbooks/hardening.yaml
+- import_playbook: playbooks/nfs_utils.yaml
+- import_playbook: playbooks/firewall_ubuntu.yaml
+- import_playbook: playbooks/nfs_cliente.yaml
+- import_playbook: playbooks/webserver_python.yaml

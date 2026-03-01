@@ -87,6 +87,10 @@ IP: 192.168.1.11
 Hostname: centos02 
 IP: 192.168.1.12
 
+Usuario necesario
+
+Es necesario que las todas las maquinas tengan un usuario sysadmin, con permisos de root. Con contrasenia: lxtaller
+Para poder ejecutar los playbooks.
 
 ============================================================
 
@@ -103,8 +107,9 @@ Si todo está bien configurado, debería responder correctamente.
 Ejecutar un playbook
 
 Para ejecutar el proyecto se utiliza:
+Parado en el repositorio raiz.
 
-ansible-playbook -i inventories/hosts.ini playbooks/site.yml
+ansible-playbook -i inventories/hosts.ini site.yml --ask-become-pass
 
 Este playbook contiene todos los playbooks del proyecto concatenados.
 De esta forma ansible se conectará a los servidores y aplicará las tareas definidas.
