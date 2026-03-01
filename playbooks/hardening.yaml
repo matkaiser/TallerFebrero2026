@@ -38,8 +38,6 @@
       state: restarted
     when: ansible_os_family == "Redhat"
 
-
-
   handlers:
 
   - name: Reboot servers

@@ -1,0 +1,9 @@
+---
+- hosts: ubuntu
+  become: true
+
+- import_playbook: hardening.yaml
+- import_playbook: nfs_utils.yaml
+- import_playbook: nfs_cliente.yaml
+- import_playbook: webserver_python.yaml
+- import_playbook: firewall_ubuntu.yaml
