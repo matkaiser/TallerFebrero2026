@@ -133,3 +133,10 @@ ansible-playbook -i inventories/hosts.ini playbooks/site.yml --check
 Esto permite detectar posibles problemas sin modificar nada.
 
 ============================================================
+
+Disclaimer uso IA
+
+Se utilizo IA como base de conocimiento para la mayoria de modulos utilizados en este proyecto.
+Tanto gramaticalmente hablando como sus posibles atributos.
+
+============================================================
